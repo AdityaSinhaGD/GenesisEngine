@@ -5,6 +5,8 @@
 Game::Game()
 {
 	this->isRunning = false;
+	this->window = NULL;
+	this->renderer = NULL;
 }
 
 Game::~Game()
