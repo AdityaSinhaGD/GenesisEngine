@@ -72,7 +72,7 @@ void Game::ProcessInput()
 
 void Game::Update()
 {
-	//Wait until we can reach our target framerate
+	//naive While loop to wait until we can reach our target framerate
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame + FRAME_TARGET_TIME));
 
 	float deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;

@@ -395,12 +395,6 @@
     <ClInclude Include="libs\imgui\imstb_rectpack.h" />
     <ClInclude Include="libs\imgui\imstb_textedit.h" />
     <ClInclude Include="libs\imgui\imstb_truetype.h" />
-    <ClInclude Include="libs\lua\lauxlib.h" />
-    <ClInclude Include="libs\lua\lua.h" />
-    <ClInclude Include="libs\lua\lua.hpp" />
-    <ClInclude Include="libs\lua\luaconf.h" />
-    <ClInclude Include="libs\lua\lualib.h" />
-    <ClInclude Include="libs\sol\sol.hpp" />
     <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\Game.h" />
   </ItemGroup>
