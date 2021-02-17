@@ -72,8 +72,17 @@ void Game::ProcessInput()
 
 void Game::Update()
 {
-	//naive While loop to wait until we can reach our target framerate
-	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame + FRAME_TARGET_TIME));
+	//naive While loop to wait until we can reach our target framerate. This process will tax the processor significantly.
+	//while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame + FRAME_TARGET_TIME));
+
+	//Delay execution until we reach our target frame rendering time in milliseconds
+	int timeToWait = FRAME_TARGET_TIME - (SDL_GetTicks() - ticksLastFrame);
+
+	//Only call Delay if our system processes this frame too quickly
+	if (timeToWait > 0 && timeToWait <= FRAME_TARGET_TIME)
+	{
+		SDL_Delay(timeToWait);
+	}
 
 	float deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;
 
