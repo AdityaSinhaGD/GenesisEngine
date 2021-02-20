@@ -3,6 +3,9 @@
 #include "Game.h"
 #include <glm/glm.hpp>
 
+EntityManager manager;
+SDL_Renderer* Game::renderer;
+
 Game::Game()
 {
 	this->isRunning = false;
@@ -117,4 +120,8 @@ void Game::Destroy()
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+}
+
+void Game::LoadLevel()
+{
 }

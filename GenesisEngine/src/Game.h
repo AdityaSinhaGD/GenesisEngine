@@ -6,15 +6,19 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 
+#include "Component.h"
+#include "Entity.h"
+#include "EntityManager.h"
+
 class Game
 {
 private:
 	bool isRunning;
 	SDL_Window* window;
-	SDL_Renderer* renderer;
 public:
 	Game();
 	~Game();
+	static SDL_Renderer* renderer;
 	int ticksLastFrame;
 	bool IsRunning() const;
 	void Initialize(int width, int height);
@@ -22,6 +26,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+	void LoadLevel();
 };
 #endif // !GAME.H
 
