@@ -31,7 +31,8 @@ public:
 
 	void Update(float deltaTime) override
 	{
-
+		position.x += velocity.x * deltaTime;
+		position.y += velocity.y * deltaTime;
 	}
 
 	void Render() override

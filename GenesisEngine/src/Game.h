@@ -26,7 +26,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-	void LoadLevel();
+	void LoadLevel(int levelNumber);
 };
 #endif // !GAME.H
 
