@@ -3,8 +3,11 @@
 #include "Game.h"
 #include <glm/glm.hpp>
 #include "Components/TransformComponent.h"
+#include "Components/SpriteComponent.h"
+#include "AssetManager.h"
 
 EntityManager manager;
+AssetManager* assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 
 Game::Game()

@@ -10,6 +10,8 @@
 #include "Entity.h"
 #include "EntityManager.h"
 
+class AssetManager;
+
 class Game
 {
 private:
@@ -19,6 +21,7 @@ public:
 	Game();
 	~Game();
 	static SDL_Renderer* renderer;
+	static AssetManager* assetManager;
 	int ticksLastFrame;
 	bool IsRunning() const;
 	void Initialize(int width, int height);
