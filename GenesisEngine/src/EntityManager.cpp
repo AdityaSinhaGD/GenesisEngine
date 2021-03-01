@@ -61,7 +61,7 @@ void EntityManager::ListAllComponents()
 	{
 		for (auto& component : entity->GetAllAttachedComponents())
 		{
-			std::cout << typeid(*component).name() << "\n";
+			std::cout <<component->owner->entityName<<":"<<typeid(*component).name() << "\n";
 		}
 	}
 }
