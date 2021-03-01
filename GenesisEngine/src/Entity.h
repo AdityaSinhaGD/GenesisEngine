@@ -44,10 +44,11 @@ public:
 	}
 
 	template<typename T>
-	bool HasComponent()
+	bool HasComponent() const
 	{
-		return componentTypeMap[&typeid(T)];
+		return componentTypeMap.count(&typeid(T));
 	}
+	
 
 	std::vector<Component*> GetAllAttachedComponents();
 
