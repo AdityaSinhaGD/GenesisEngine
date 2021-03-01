@@ -144,8 +144,15 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity2 = manager.AddEntity("player");
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
-	entity2.AddComponent<TransformComponent>(512, 370, 0, 0, 35, 35, 5);
+	entity2.AddComponent<TransformComponent>(512, 370, 0, 0, 32, 32, 5);
 	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 90, true, false);
+
+
+	Entity& entity3 = manager.AddEntity("radar");
+	std::string textureFilePath3 = "./assets/images/radar-spritesheet.png";
+	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
+	entity3.AddComponent<TransformComponent>(800, 600, 0, 0, 64, 64, 1);
+	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 90, false, true);
 
 
 }
