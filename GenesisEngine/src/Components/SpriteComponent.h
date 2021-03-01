@@ -35,7 +35,7 @@ public:
 
 	SpriteComponent(std::string id, int numberOfFrames, int animationSpeed, bool hasDirections, bool isFixed)
 	{
-		isAnimated = true;
+		this->isAnimated = true;
 		this->numberOfFrames = numberOfFrames;
 		this->animationSpeed = animationSpeed;
 		this->isFixed = isFixed;
@@ -43,6 +43,19 @@ public:
 		if (hasDirections)
 		{
 			//todo process directions
+			Animation downAnimation = Animation(0, numberOfFrames, animationSpeed);
+			Animation rightAnimation = Animation(1, numberOfFrames, animationSpeed);
+			Animation leftAnimation = Animation(2, numberOfFrames, animationSpeed);
+			Animation upAnimation = Animation(3, numberOfFrames, animationSpeed);
+
+			animations.emplace("DownAnimation", downAnimation);
+			animations.emplace("RightAnimation", rightAnimation);
+			animations.emplace("LeftAnimation", leftAnimation);
+			animations.emplace("UpAnimation", upAnimation);
+
+			this->animationIndex = 0;
+			this->currentAnimationName = "DownAnimation";
+
 		}
 		else
 		{
@@ -51,10 +64,10 @@ public:
 			animations.emplace("SingleAnimation", singleAnimation);
 			this->animationIndex = 0;
 			this->currentAnimationName = "SingleAnimation";
-
-			PlayAnimation(this->currentAnimationName);
-			SetTexture(id);
+	
 		}
+		PlayAnimation(this->currentAnimationName);
+		SetTexture(id);
 	}
 
 	void PlayAnimation(std::string animationName)
@@ -81,6 +94,12 @@ public:
 
 	void Update(float deltaTime) override
 	{
+		if (isAnimated)
+		{
+			sourceRectangle.x = sourceRectangle.w * static_cast<int>((SDL_GetTicks() / animationSpeed) % numberOfFrames);
+		}
+		sourceRectangle.y = animationIndex * transform->height;
+
 		targetRectangle.x = static_cast<int>(transform->position.x);
 		targetRectangle.y = static_cast<int>(transform->position.y);
 		targetRectangle.w = transform->width * transform->scale;

@@ -144,8 +144,8 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity2 = manager.AddEntity("player");
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
-	entity2.AddComponent<TransformComponent>(512, 370, -20, -20, 35, 35, 5);
-	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet");
+	entity2.AddComponent<TransformComponent>(512, 370, 0, 0, 35, 35, 5);
+	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 90, true, false);
 
 
 }
