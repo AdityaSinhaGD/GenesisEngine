@@ -1,8 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <vector>
+#include<vector>
 #include<string>
+#include<map>
 #include "Component.h"
 
 class EntityManager;
@@ -14,6 +15,7 @@ private:
 	EntityManager& entityManager;
 	bool isActive;
 	std::vector<Component*> components;
+	std::map<const type_info*, Component*> componentTypeMap;
 public:
 	std::string entityName;
 	Entity(EntityManager& entityManager);
