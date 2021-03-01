@@ -4,6 +4,7 @@
 #include "../TextureManager.h"
 #include "../AssetManager.h"
 #include "TransformComponent.h"
+#include "../Animation.h"
 
 class SpriteComponent :public Component
 {
@@ -12,13 +13,58 @@ private:
 	SDL_Texture* texture;
 	SDL_Rect sourceRectangle;
 	SDL_Rect targetRectangle;
+
+	bool isAnimated;
+	int numberOfFrames;
+	int animationSpeed;
+	bool isFixed;
+
+	std::map<std::string, Animation> animations;
+	std::string currentAnimationName;
+	unsigned int animationIndex = 0;
+
 public:
 	SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
 
 	SpriteComponent(const char* filePath)
 	{
+		isAnimated = false;
+		isFixed = false;
 		SetTexture(filePath);
 	}
+
+	SpriteComponent(std::string id, int numberOfFrames, int animationSpeed, bool hasDirections, bool isFixed)
+	{
+		isAnimated = true;
+		this->numberOfFrames = numberOfFrames;
+		this->animationSpeed = animationSpeed;
+		this->isFixed = isFixed;
+
+		if (hasDirections)
+		{
+			//todo process directions
+		}
+		else
+		{
+			//todo process if no directions
+			Animation singleAnimation = Animation(0,numberOfFrames,animationSpeed);
+			animations.emplace("SingleAnimation", singleAnimation);
+			this->animationIndex = 0;
+			this->currentAnimationName = "SingleAnimation";
+
+			PlayAnimation(this->currentAnimationName);
+			SetTexture(id);
+		}
+	}
+
+	void PlayAnimation(std::string animationName)
+	{
+		numberOfFrames = animations[animationName].numberOfFrames;
+		animationIndex = animations[animationName].index;
+		animationSpeed = animations[animationName].animationSpeed;
+		currentAnimationName = animationName;
+	}
+
 	void SetTexture(std::string assetTextureId)
 	{
 		texture = Game::assetManager->GetTexture(assetTextureId);
