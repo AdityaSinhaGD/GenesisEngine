@@ -2,12 +2,13 @@
 #include "Constants.h"
 #include "Game.h"
 #include <glm/glm.hpp>
+#include "AssetManager.h"
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
-#include "AssetManager.h"
+
 
 EntityManager manager;
-AssetManager* assetManager = new AssetManager(&manager);
+AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 
 Game::Game()
@@ -128,7 +129,11 @@ void Game::Destroy()
 
 void Game::LoadLevel(int levelNumber)
 {
+	//todo load assets
+	std::string textureFilePath = "./assets/images/truck-ford-right.png";
+	assetManager->AddTexture("truck-Image", textureFilePath.c_str());
 	//toDo Add entities and components
-	Entity& newEntity = manager.AddEntity("TestProjectile");
-	TransformComponent transform = newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 1);
+	Entity& newEntity = manager.AddEntity("truck");
+	newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 1);
+	newEntity.AddComponent<SpriteComponent>("truck-Image");
 }

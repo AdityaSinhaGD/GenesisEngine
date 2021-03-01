@@ -21,7 +21,7 @@ public:
 	}
 	void SetTexture(std::string assetTextureId)
 	{
-		Game::assetManager->GetTexture(assetTextureId);
+		texture = Game::assetManager->GetTexture(assetTextureId);
 	}
 
 	void Initialize() override

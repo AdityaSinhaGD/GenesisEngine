@@ -37,7 +37,7 @@ public:
 
 	void Render() override
 	{
-		SDL_Rect rectTransform = {
+		/*SDL_Rect rectTransform = {
 			(int)position.x,
 			(int)position.y,
 			width,
@@ -45,7 +45,7 @@ public:
 		};
 
 		SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
-		SDL_RenderFillRect(Game::renderer, &rectTransform);
+		SDL_RenderFillRect(Game::renderer, &rectTransform);*/
 	}
 };
 
