@@ -21,6 +21,6 @@ public:
 	void ClearData();
 
 	void ListAllEntities();
-	void ListAllComponents();
+	void ListAllEntitiesAndTheirComponents();
 };
 #endif

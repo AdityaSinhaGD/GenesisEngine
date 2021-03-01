@@ -56,8 +56,7 @@ void Game::Initialize(int width, int height)
 
 	LoadLevel(0);
 	//debug to console block
-	manager.ListAllEntities();
-	manager.ListAllComponents();
+	manager.ListAllEntitiesAndTheirComponents();
 	//debug block ends
 	isRunning = true;
 	return;
