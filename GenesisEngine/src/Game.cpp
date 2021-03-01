@@ -126,7 +126,6 @@ void Game::Destroy()
 void Game::LoadLevel(int levelNumber)
 {
 	//toDo Add entities and components
-	Entity& newEntity(manager.AddEntity("TestProjectile"));
-	newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 1);
-
+	Entity& newEntity = manager.AddEntity("TestProjectile");
+	TransformComponent transform = newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 1);
 }
