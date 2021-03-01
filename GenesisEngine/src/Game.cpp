@@ -139,6 +139,7 @@ void Game::LoadLevel(int levelNumber)
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
 	entity1.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 2);
 	entity1.AddComponent<SpriteComponent>("truck-Image");
+	std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
 
 	Entity& entity2 = manager.AddEntity("tank");
