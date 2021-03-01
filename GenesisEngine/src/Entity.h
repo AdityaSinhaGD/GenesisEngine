@@ -43,5 +43,7 @@ public:
 		return static_cast<T*>(componentTypeMap[&typeid(T)]);
 	}
 
+	std::vector<Component*> GetAllAttachedComponents();
+
 };
 #endif

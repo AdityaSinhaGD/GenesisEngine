@@ -5,6 +5,8 @@
 #include "Component.h"
 #include<vector>
 
+#include<iostream>
+
 class EntityManager
 {
 private:
@@ -17,5 +19,8 @@ public:
 	std::vector<Entity*> GetEntities() const;
 	unsigned int GetEntityCount();
 	void ClearData();
+
+	void ListAllEntities();
+	void ListAllComponents();
 };
 #endif

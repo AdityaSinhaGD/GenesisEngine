@@ -46,3 +46,22 @@ void EntityManager::ClearData()
 		entity->Destroy();
 	}
 }
+
+void EntityManager::ListAllEntities()
+{
+	for (auto& entity : entities)
+	{
+		std::cout << entity->entityName <<"\n";
+	}
+}
+
+void EntityManager::ListAllComponents()
+{
+	for (auto& entity : entities)
+	{
+		for (auto& component : entity->GetAllAttachedComponents())
+		{
+			std::cout << typeid(*component).name() << "\n";
+		}
+	}
+}

@@ -35,3 +35,8 @@ bool Entity::IsActive() const
 {
 	return this->isActive;
 }
+
+std::vector<Component*> Entity::GetAllAttachedComponents()
+{
+	return components;
+}

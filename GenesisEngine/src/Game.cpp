@@ -55,6 +55,10 @@ void Game::Initialize(int width, int height)
 	}
 
 	LoadLevel(0);
+	//debug to console block
+	manager.ListAllEntities();
+	manager.ListAllComponents();
+	//debug block ends
 	isRunning = true;
 	return;
 }
@@ -129,11 +133,19 @@ void Game::Destroy()
 
 void Game::LoadLevel(int levelNumber)
 {
-	//todo load assets
-	std::string textureFilePath = "./assets/images/truck-ford-right.png";
-	assetManager->AddTexture("truck-Image", textureFilePath.c_str());
-	//toDo Add entities and components
-	Entity& newEntity = manager.AddEntity("truck");
-	newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 1);
-	newEntity.AddComponent<SpriteComponent>("truck-Image");
+	
+	Entity& entity1 = manager.AddEntity("truck");
+	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
+	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
+	entity1.AddComponent<TransformComponent>(0, 0, 20, 20, 35, 35, 2);
+	entity1.AddComponent<SpriteComponent>("truck-Image");
+
+
+	Entity& entity2 = manager.AddEntity("tank");
+	std::string textureFilePath2 = "./assets/images/tank-tiger-left.png";
+	assetManager->AddTexture("tank-Image", textureFilePath2.c_str());
+	entity2.AddComponent<TransformComponent>(250, 250, -20, -20, 35, 35, 1);
+	entity2.AddComponent<SpriteComponent>("tank-Image");
+
+
 }
