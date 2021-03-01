@@ -81,8 +81,8 @@ public:
 
 	void Update(float deltaTime) override
 	{
-		targetRectangle.x = (int)transform->position.x;
-		targetRectangle.y = (int)transform->position.y;
+		targetRectangle.x = static_cast<int>(transform->position.x);
+		targetRectangle.y = static_cast<int>(transform->position.y);
 		targetRectangle.w = transform->width * transform->scale;
 		targetRectangle.h = transform->height * transform->scale;
 	}
