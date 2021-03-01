@@ -132,7 +132,7 @@ void Game::Destroy()
 
 void Game::LoadLevel(int levelNumber)
 {
-	
+	//Width and height of transform component should match texture dimensions to produce artifactless animations
 	Entity& entity1 = manager.AddEntity("truck");
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
@@ -153,6 +153,12 @@ void Game::LoadLevel(int levelNumber)
 	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
 	entity3.AddComponent<TransformComponent>(800, 600, 0, 0, 64, 64, 1);
 	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 90, false, true);
+
+	Entity& entity4 = manager.AddEntity("lightning");
+	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
+	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
+	entity4.AddComponent<TransformComponent>(0, 600, 0, 0, 128, 160, 1);
+	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, true);
 
 
 }
