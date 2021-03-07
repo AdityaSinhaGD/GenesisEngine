@@ -400,6 +400,7 @@
     <ClInclude Include="libs\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Components\TransformComponent.h" />
+    <ClInclude Include="src\Components\TranslationComponent.h" />
     <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\EntityManager.h" />
