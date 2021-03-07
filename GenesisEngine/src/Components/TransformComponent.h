@@ -9,16 +9,15 @@ class TransformComponent :public Component
 public:
 
 	glm::vec2 position;
-	glm::vec2 velocity;
 
 	int width;
 	int height;
 	int scale;
 
-	TransformComponent(int posX, int posY, int velocityX, int velocityY, int width, int height, int scale)
+	TransformComponent(int posX, int posY, int width, int height, int scale)
 	{
 		position = glm::vec2(posX, posY);
-		velocity = glm::vec2(velocityX, velocityY);
+		
 		this->width = width;
 		this->height = height;
 		this->scale = scale;
@@ -31,8 +30,7 @@ public:
 
 	void Update(float deltaTime) override
 	{
-		position.x += velocity.x * deltaTime;
-		position.y += velocity.y * deltaTime;
+		
 	}
 
 	void Render() override
