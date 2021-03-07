@@ -154,14 +154,14 @@ void Game::LoadLevel(int levelNumber)
 	std::string textureFilePath3 = "./assets/images/radar-spritesheet.png";
 	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
 	entity3.AddComponent<TransformComponent>(800, 600, 64, 64, 1);
-	entity3.AddComponent<TranslationComponent>(-10, 0);
 	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 60, false, true);
 
 	Entity& entity4 = manager.AddEntity("lightning");
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
 	entity4.AddComponent<TransformComponent>(0, 600, 128, 160, 1);
-	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 60, false, false);
+	entity4.AddComponent<TranslationComponent>(30, -30);
+	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
 
 
 }
