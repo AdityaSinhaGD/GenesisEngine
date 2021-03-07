@@ -147,7 +147,7 @@ void Game::LoadLevel(int levelNumber)
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
 	entity2.AddComponent<TransformComponent>(512, 370, 32, 32, 5);
-	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 90, true, false);
+	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
 
 
 	Entity& entity3 = manager.AddEntity("radar");
@@ -155,13 +155,13 @@ void Game::LoadLevel(int levelNumber)
 	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
 	entity3.AddComponent<TransformComponent>(800, 600, 64, 64, 1);
 	entity3.AddComponent<TranslationComponent>(-10, 0);
-	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 90, false, true);
+	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 60, false, true);
 
 	Entity& entity4 = manager.AddEntity("lightning");
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
 	entity4.AddComponent<TransformComponent>(0, 600, 128, 160, 1);
-	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
+	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 60, false, false);
 
 
 }
