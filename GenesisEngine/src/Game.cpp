@@ -29,10 +29,6 @@ bool Game::IsRunning() const {
 	return this->isRunning;
 }
 
-//glm::vec2 projectilePos = glm::vec2(0.0f, 0.0f);
-//glm::vec2 projectileVelocity = glm::vec2(20.0f, 30.0f);
-
-
 void Game::Initialize(int width, int height)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
