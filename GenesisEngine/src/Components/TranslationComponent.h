@@ -13,6 +13,11 @@ private:
 public:
 	glm::vec2 velocity;
 
+	TranslationComponent()
+	{
+
+	}
+
 	TranslationComponent(int velocityX, int velocitY)
 	{
 		velocity.x = velocityX;

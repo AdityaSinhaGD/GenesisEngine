@@ -3,6 +3,7 @@
 #include "../EntityManager.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h" //including so we can toggle between animations using keyboard input
+#include "TranslationComponent.h" //including so we can impart velocity to our transform
 
 class KeyboardInputComponent : public Component
 {
@@ -14,6 +15,7 @@ public:
 	std::string fireKey;
 	TransformComponent* transform;
 	SpriteComponent* sprite;
+	TranslationComponent* translation;
 
 	KeyboardInputComponent()
 	{
@@ -58,10 +60,67 @@ public:
 	{
 		transform = owner->GetComponent<TransformComponent>();
 		sprite = owner->GetComponent<SpriteComponent>();
+		translation = owner->GetComponent<TranslationComponent>();
 	}
 
 	void Update(float deltaTime) override
 	{
+		if (Game::event.type == SDL_KEYDOWN)
+		{
+			std::string keyCode = std::to_string(Game::event.key.keysym.sym);
+			if (keyCode.compare(upKey) == 0)
+			{
+				translation->velocity.y = -20;
+				translation->velocity.x = 0;
+				sprite->PlayAnimation("UpAnimation");
+			}
+			if (keyCode.compare(rightKey) == 0)
+			{
+				translation->velocity.y = 0;
+				translation->velocity.x = 20;
+				sprite->PlayAnimation("RightAnimation");
+			}
+			if (keyCode.compare(downKey) == 0)
+			{
+				translation->velocity.y = 20;
+				translation->velocity.x = 0;
+				sprite->PlayAnimation("DownAnimation");
+			}
+			if (keyCode.compare(leftKey) == 0)
+			{
+				translation->velocity.y = 0;
+				translation->velocity.x = -20;
+				sprite->PlayAnimation("LeftAnimation");
+			}
+			if (keyCode.compare(fireKey) == 0)
+			{
+				//toDo Shoot projectiles when 'Fire' Key is pressed
+			}
+		}
 
+		if (Game::event.type == SDL_KEYUP)
+		{
+			std::string keyCode = std::to_string(Game::event.key.keysym.sym);
+			if (keyCode.compare(upKey) == 0)
+			{
+				translation->velocity.y = 0;
+			}
+			if (keyCode.compare(rightKey) == 0)
+			{
+				translation->velocity.x = 0;
+			}
+			if (keyCode.compare(downKey) == 0)
+			{
+				translation->velocity.y = 0;
+			}
+			if (keyCode.compare(leftKey) == 0)
+			{
+				translation->velocity.x = 0;
+			}
+			if (keyCode.compare(fireKey) == 0)
+			{
+
+			}
+		}
 	}
 };

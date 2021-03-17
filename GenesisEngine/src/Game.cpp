@@ -6,11 +6,13 @@
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/TranslationComponent.h"
+#include "Components/KeyboardInputComponent.h"
 
 
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
+SDL_Event Game::event;
 
 Game::Game()
 {
@@ -61,7 +63,7 @@ void Game::Initialize(int width, int height)
 
 void Game::ProcessInput()
 {
-	SDL_Event event;
+	//SDL_Event event;
 	SDL_PollEvent(&event);
 	switch (event.type)
 	{
@@ -142,8 +144,10 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity2 = manager.AddEntity("player");
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
-	entity2.AddComponent<TransformComponent>(512, 370, 32, 32, 5);
+	entity2.AddComponent<TransformComponent>(512, 384, 32, 32, 5);
+	entity2.AddComponent<TranslationComponent>();
 	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
+	entity2.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
 
 
 	Entity& entity3 = manager.AddEntity("radar");
@@ -156,7 +160,7 @@ void Game::LoadLevel(int levelNumber)
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
 	entity4.AddComponent<TransformComponent>(0, 600, 128, 160, 1);
-	entity4.AddComponent<TranslationComponent>(30, -30);
+	entity4.AddComponent<TranslationComponent>();
 	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
 
 
