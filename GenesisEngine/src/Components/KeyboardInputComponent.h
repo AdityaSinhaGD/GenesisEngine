@@ -95,6 +95,7 @@ public:
 			if (keyCode.compare(fireKey) == 0)
 			{
 				//toDo Shoot projectiles when 'Fire' Key is pressed
+				std::cout << "Fire Key Pressed";
 			}
 		}
 
