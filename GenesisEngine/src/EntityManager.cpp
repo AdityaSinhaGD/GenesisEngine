@@ -21,7 +21,7 @@ bool EntityManager::HasNoEntities()
 	return entities.size() == 0;
 }
 
-Entity& EntityManager::AddEntity(std::string entityName)
+Entity& EntityManager::AddEntity(std::string entityName,LayerType layer)
 {
 	// TODO: insert return statement here
 	Entity* entity = new Entity(*this, entityName);
@@ -32,6 +32,11 @@ Entity& EntityManager::AddEntity(std::string entityName)
 std::vector<Entity*> EntityManager::GetEntities() const
 {
 	return this->entities;
+}
+
+std::vector<Entity*> EntityManager::GetEntitiesByLayer(LayerType layer) const
+{
+	return std::vector<Entity*>();
 }
 
 unsigned int EntityManager::GetEntityCount()
