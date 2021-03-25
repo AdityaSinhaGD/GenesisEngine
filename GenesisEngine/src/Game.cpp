@@ -126,11 +126,16 @@ void Game::Render()
 	SDL_RenderPresent(renderer);
 }
 
+Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER);
+
 void Game::ProcessCameraMovement()
 {
 	TransformComponent* playerTransForm = playerEntity.GetComponent<TransformComponent>();
 	camera.x = playerTransForm->position.x - (WINDOW_WIDTH / 2);
 	camera.y = playerTransForm->position.y - (WINDOW_HEIGHT / 2);
+
+	camera.x = camera.x < 0 ? 0 : camera.x;
+	camera.y = camera.y < 0 ? 0 : camera.y;
 }
 
 void Game::Destroy()
@@ -140,7 +145,6 @@ void Game::Destroy()
 	SDL_Quit();
 }
 
-Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER);
 
 void Game::LoadLevel(int levelNumber)
 {

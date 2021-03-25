@@ -39,7 +39,8 @@ public:
 	//Update tile positions based on Camera values.
 	void Update(float deltaTime) override
 	{
-
+		targetRectangle.x = position.x - Game::camera.x;
+		targetRectangle.y = position.y - Game::camera.y;
 	}
 
 	void Render() override
