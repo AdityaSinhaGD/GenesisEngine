@@ -23,6 +23,7 @@ public:
 	static SDL_Renderer* renderer;
 	static AssetManager* assetManager;
 	static SDL_Event event;
+	static SDL_Rect camera;
 	int ticksLastFrame;
 	bool IsRunning() const;
 	void Initialize(int width, int height);
@@ -31,6 +32,7 @@ public:
 	void Render();
 	void Destroy();
 	void LoadLevel(int levelNumber);
+	void ProcessCameraMovement();
 };
 #endif // !GAME.H
 

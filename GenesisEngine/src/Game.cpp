@@ -14,7 +14,7 @@ EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 SDL_Event Game::event;
-
+SDL_Rect Game::camera = { 0,0,WINDOW_WIDTH,WINDOW_HEIGHT };
 Map* map;
 
 Game::Game()
@@ -108,6 +108,7 @@ void Game::Update()
 	//toDO call EntityManager's Update method to update all entites as a function of delta time
 	manager.Update(deltaTime);
 
+	ProcessCameraMovement();
 }
 
 void Game::Render()
@@ -125,12 +126,21 @@ void Game::Render()
 	SDL_RenderPresent(renderer);
 }
 
+void Game::ProcessCameraMovement()
+{
+	TransformComponent* playerTransForm = playerEntity.GetComponent<TransformComponent>();
+	camera.x = playerTransForm->position.x - (WINDOW_WIDTH / 2);
+	camera.y = playerTransForm->position.y - (WINDOW_HEIGHT / 2);
+}
+
 void Game::Destroy()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 }
+
+Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER);
 
 void Game::LoadLevel(int levelNumber)
 {
@@ -150,13 +160,13 @@ void Game::LoadLevel(int levelNumber)
 	std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
 
-	Entity& entity2 = manager.AddEntity("player", PLAYER_LAYER);
+	
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
-	entity2.AddComponent<TransformComponent>(512, 384, 32, 32, 5);
-	entity2.AddComponent<TranslationComponent>();
-	entity2.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
-	entity2.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
+	playerEntity.AddComponent<TransformComponent>(512, 384, 32, 32, 5);
+	playerEntity.AddComponent<TranslationComponent>();
+	playerEntity.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
+	playerEntity.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
 
 
 	Entity& entity3 = manager.AddEntity("radar", UI_LAYER);
