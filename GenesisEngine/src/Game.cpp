@@ -7,12 +7,15 @@
 #include "Components/SpriteComponent.h"
 #include "Components/TranslationComponent.h"
 #include "Components/KeyboardInputComponent.h"
+#include "Map.h"
 
 
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 SDL_Event Game::event;
+
+Map* map;
 
 Game::Game()
 {
@@ -131,6 +134,12 @@ void Game::Destroy()
 
 void Game::LoadLevel(int levelNumber)
 {
+	//Loading a tilemap before loading other entities
+	std::string mapFilePath = "./assets/tilemaps/jungle.png";
+	assetManager->AddTexture("Level-TileMapTexture", mapFilePath.c_str());
+	map = new Map("Level-TileMapTexture", 1, 32);
+	map->LoadMap("./assets/tilemaps/jungle.map", 25, 20);//Hard coding the values of the tilemap elements for now.
+
 	//Width and height of transform component should match texture dimensions to produce artifactless animations
 	Entity& entity1 = manager.AddEntity("truck");
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
@@ -153,13 +162,13 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity3 = manager.AddEntity("radar");
 	std::string textureFilePath3 = "./assets/images/radar-spritesheet.png";
 	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
-	entity3.AddComponent<TransformComponent>(800, 600, 64, 64, 1);
+	entity3.AddComponent<TransformComponent>(720, 20, 64, 64, 1);
 	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 60, false, true);
 
 	Entity& entity4 = manager.AddEntity("lightning");
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
-	entity4.AddComponent<TransformComponent>(0, 600, 128, 160, 1);
+	entity4.AddComponent<TransformComponent>(0, 0, 128, 160, 1);
 	entity4.AddComponent<TranslationComponent>();
 	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
 

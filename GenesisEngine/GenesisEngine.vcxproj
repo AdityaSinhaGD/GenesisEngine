@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\TileComponent.h" />
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Components\KeyboardInputComponent.h" />
