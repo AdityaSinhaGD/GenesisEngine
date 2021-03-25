@@ -171,7 +171,7 @@ void Game::LoadLevel(int levelNumber)
 	
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
-	playerEntity.AddComponent<TransformComponent>(512, 384, 32, 32, 5);
+	playerEntity.AddComponent<TransformComponent>(200, 100, 32, 32, 2);
 	playerEntity.AddComponent<TranslationComponent>();
 	playerEntity.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
 	playerEntity.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
