@@ -38,7 +38,7 @@ void Map::LoadMap(std::string filePath, int mapSizeX, int mapSizeY)
 
 			AddTile(sourceRectX, sourceRectY, x * (scale * tileSize), y * (scale * tileSize));
 			mapFile.ignore();
-			std::cout << ch;
+			
 		}
 	}
 	mapFile.close();

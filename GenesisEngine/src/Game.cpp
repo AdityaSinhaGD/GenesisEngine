@@ -137,7 +137,7 @@ void Game::LoadLevel(int levelNumber)
 	//Loading a tilemap before loading other entities
 	std::string mapFilePath = "./assets/tilemaps/jungle.png";
 	assetManager->AddTexture("Level-TileMapTexture", mapFilePath.c_str());
-	map = new Map("Level-TileMapTexture", 1, 32);
+	map = new Map("Level-TileMapTexture", 2, 32);
 	map->LoadMap("./assets/tilemaps/jungle.map", 25, 20);//Hard coding the values of the tilemap elements for now.
 
 	//Width and height of transform component should match texture dimensions to produce artifactless animations
