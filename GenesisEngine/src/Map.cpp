@@ -47,6 +47,6 @@ void Map::LoadMap(std::string filePath, int mapSizeX, int mapSizeY)
 //Add new tile obj to the game scene
 void Map::AddTile(int sourceRectX, int sourceRectY, int x, int y)
 {
-	Entity& newTile(manager.AddEntity("Tile")); //This will break the unique entitiy naming scheme for tile type but I can live with this for now.
+	Entity& newTile(manager.AddEntity("Tile", TILEMAP_LAYER)); //This will break the unique entitiy naming scheme for tile type but I can live with this for now.
 	newTile.AddComponent<TileComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textureId);
 }

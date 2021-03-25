@@ -141,7 +141,7 @@ void Game::LoadLevel(int levelNumber)
 	map->LoadMap("./assets/tilemaps/jungle.map", 25, 20);//Hard coding the values of the tilemap elements for now.
 
 	//Width and height of transform component should match texture dimensions to produce artifactless animations
-	Entity& entity1 = manager.AddEntity("truck");
+	Entity& entity1 = manager.AddEntity("truck", ENEMY_LAYER);
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
 	entity1.AddComponent<TransformComponent>(0, 0, 35, 35, 5);
@@ -150,7 +150,7 @@ void Game::LoadLevel(int levelNumber)
 	std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
 
-	Entity& entity2 = manager.AddEntity("player");
+	Entity& entity2 = manager.AddEntity("player", PLAYER_LAYER);
 	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
 	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
 	entity2.AddComponent<TransformComponent>(512, 384, 32, 32, 5);
@@ -159,13 +159,13 @@ void Game::LoadLevel(int levelNumber)
 	entity2.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
 
 
-	Entity& entity3 = manager.AddEntity("radar");
+	Entity& entity3 = manager.AddEntity("radar", UI_LAYER);
 	std::string textureFilePath3 = "./assets/images/radar-spritesheet.png";
 	assetManager->AddTexture("radar-SpriteSheet", textureFilePath3.c_str());
 	entity3.AddComponent<TransformComponent>(720, 20, 64, 64, 1);
 	entity3.AddComponent<SpriteComponent>("radar-SpriteSheet", 8, 60, false, true);
 
-	Entity& entity4 = manager.AddEntity("lightning");
+	Entity& entity4 = manager.AddEntity("lightning", UI_LAYER);
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
 	entity4.AddComponent<TransformComponent>(0, 0, 128, 160, 1);
