@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Components\KeyboardInputComponent.h" />
     <ClInclude Include="src\Components\SpriteComponent.h" />
@@ -561,6 +562,7 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="libs\glm\detail\glm.cpp" />
