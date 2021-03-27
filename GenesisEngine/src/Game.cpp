@@ -182,8 +182,8 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity1 = manager.AddEntity("truck", ENEMY_LAYER);
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
-	entity1.AddComponent<TransformComponent>(0, 0, 35, 35, 3);
-	entity1.AddComponent<TranslationComponent>(10, 10);
+	entity1.AddComponent<TransformComponent>(0, 300, 32, 32, 3);
+	entity1.AddComponent<TranslationComponent>(10, 0);
 	entity1.AddComponent<SpriteComponent>("truck-Image");
 	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 35, 35);
 	//std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
