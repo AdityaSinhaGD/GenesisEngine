@@ -1,4 +1,6 @@
 #include "EntityManager.h"
+#include "Collision.h"
+#include "Components/ColliderComponent.h"
 
 void EntityManager::Update(float deltaTime)
 {
@@ -86,4 +88,28 @@ void EntityManager::ListAllEntitiesAndTheirComponents()
 			std::cout <<component->owner->entityName<<":"<<typeid(*component).name() << "\n";
 		}
 	}
+}
+
+std::string EntityManager::CheckEntityCollisions(Entity& myEntity) const
+{
+	ColliderComponent* myCollider = myEntity.GetComponent<ColliderComponent>();
+
+	for (auto& entity : entities)
+	{
+		if (entity->entityName.compare(myEntity.entityName) != 0 && entity->entityName.compare("Tile") != 0)//not checking with self and tile entities.
+		{
+			if (entity->HasComponent<ColliderComponent>())
+			{
+				ColliderComponent* otherCollider = entity->GetComponent<ColliderComponent>();
+
+				if (Collision::CheckRectangleCollision(myCollider->collider, otherCollider->collider))
+				{
+					return otherCollider->colliderTag;
+				}
+			}
+		}
+		
+	}
+	return std::string();//if no collisions we just return an empty string.
+	
 }

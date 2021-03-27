@@ -7,6 +7,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/TranslationComponent.h"
 #include "Components/KeyboardInputComponent.h"
+#include "Components/ColliderComponent.h"
 #include "Map.h"
 
 
@@ -16,12 +17,14 @@ SDL_Renderer* Game::renderer;
 SDL_Event Game::event;
 SDL_Rect Game::camera = { 0,0,WINDOW_WIDTH,WINDOW_HEIGHT };
 Map* map;
+bool Game::isDebugMode;
 
 Game::Game()
 {
 	this->isRunning = false;
 	this->window = NULL;
 	this->renderer = NULL;
+	this->isDebugMode = false;
 	ticksLastFrame = 0;
 }
 
@@ -78,6 +81,10 @@ void Game::ProcessInput()
 		{
 			isRunning = false;
 		}
+		if (event.key.keysym.sym == SDLK_F1)
+		{
+			isDebugMode = !isDebugMode;
+		}
 		break;
 	default:
 		break;
@@ -109,6 +116,8 @@ void Game::Update()
 	manager.Update(deltaTime);
 
 	ProcessCameraMovement();
+
+	ProcessCollisions();
 }
 
 void Game::Render()
@@ -142,6 +151,17 @@ void Game::ProcessCameraMovement()
 	camera.y = camera.y > camera.h ? camera.h : camera.y;
 }
 
+void Game::ProcessCollisions()
+{
+	//Check all entities colliding with this one.
+	std::string collisionTagType = manager.CheckEntityCollisions(playerEntity);
+	if (collisionTagType.compare("enemy") == 0)
+	{
+		std::cout << collisionTagType <<"-----------------------------------------------";
+		//isRunning = false;//stops application.
+	}
+}
+
 void Game::Destroy()
 {
 	SDL_DestroyWindow(window);
@@ -162,10 +182,11 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity1 = manager.AddEntity("truck", ENEMY_LAYER);
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
-	entity1.AddComponent<TransformComponent>(0, 0, 35, 35, 5);
-	entity1.AddComponent<TranslationComponent>(20, 20);
+	entity1.AddComponent<TransformComponent>(0, 0, 35, 35, 3);
+	entity1.AddComponent<TranslationComponent>(10, 10);
 	entity1.AddComponent<SpriteComponent>("truck-Image");
-	std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
+	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 35, 35);
+	//std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
 
 	
@@ -175,6 +196,7 @@ void Game::LoadLevel(int levelNumber)
 	playerEntity.AddComponent<TranslationComponent>();
 	playerEntity.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
 	playerEntity.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
+	playerEntity.AddComponent<ColliderComponent>("player", 200, 100, 32, 32);
 
 
 	Entity& entity3 = manager.AddEntity("radar", UI_LAYER);

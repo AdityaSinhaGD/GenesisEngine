@@ -23,5 +23,6 @@ public:
 
 	void ListAllEntities();
 	void ListAllEntitiesAndTheirComponents();
+	std::string CheckEntityCollisions(Entity& entity) const;
 };
 #endif

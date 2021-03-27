@@ -33,6 +33,8 @@ public:
 	void Destroy();
 	void LoadLevel(int levelNumber);
 	void ProcessCameraMovement();
+	void ProcessCollisions();
+	static bool isDebugMode;
 };
 #endif // !GAME.H
 

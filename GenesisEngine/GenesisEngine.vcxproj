@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\Components\ColliderComponent.h" />
     <ClInclude Include="src\Components\TileComponent.h" />
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Animation.h" />
@@ -563,6 +565,7 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />

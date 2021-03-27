@@ -39,4 +39,23 @@ public:
 		destinationRectangle.x = collider.x - Game::camera.x;
 		destinationRectangle.y = collider.y - Game::camera.y;
 	}
+
+	void Render() override
+	{
+		if (Game::isDebugMode)
+		{
+			SDL_FRect rectTransform = {
+				(float)destinationRectangle.x,
+				(float)destinationRectangle.y,
+				collider.w,
+				collider.h
+			};
+
+
+			SDL_SetRenderDrawColor(Game::renderer, 255, 0, 0, 255);
+			SDL_RenderDrawRectF(Game::renderer, &rectTransform);
+		}
+		//SDL_RenderFillRect(Game::renderer, &rectTransform);
+		
+	}
 };
