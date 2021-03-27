@@ -83,7 +83,11 @@ void Game::ProcessInput()
 		}
 		if (event.key.keysym.sym == SDLK_F1)
 		{
-			isDebugMode = !isDebugMode;
+			isDebugMode = true;
+		}
+		if (event.key.keysym.sym == SDLK_F2)
+		{
+			isDebugMode = false;
 		}
 		break;
 	default:
