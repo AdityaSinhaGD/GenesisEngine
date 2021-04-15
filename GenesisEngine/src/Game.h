@@ -35,6 +35,9 @@ public:
 	void ProcessCameraMovement();
 	void ProcessCollisions();
 	static bool isDebugMode;
+	void CheckAllCollisions();
+	void LoadNextLevel();
+	void ProcessGameOver();
 };
 #endif // !GAME.H
 

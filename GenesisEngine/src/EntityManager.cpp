@@ -113,3 +113,44 @@ std::string EntityManager::CheckEntityCollisions(Entity& myEntity) const
 	return std::string();//if no collisions we just return an empty string.
 	
 }
+
+CollisionType EntityManager::CheckCollisions() const
+{
+	for (auto& entity : entities)
+	{
+		if (entity->HasComponent<ColliderComponent>())
+		{
+			ColliderComponent* entityCollider = entity->GetComponent<ColliderComponent>();
+
+			for (auto& otherEntity : entities)
+			{
+				if (entity->entityName.compare(otherEntity->entityName) != 0 && otherEntity->HasComponent<ColliderComponent>())
+				{
+					ColliderComponent* otherCollider = otherEntity->GetComponent<ColliderComponent>();
+
+					if (Collision::CheckRectangleCollision(entityCollider->collider, otherCollider->collider))
+					{
+						if (entityCollider->colliderTag.compare("player") == 0 && otherCollider->colliderTag.compare("enemy") == 0)
+						{
+							return PLAYER_ENEMY_COLLISION;
+						}
+						if (entityCollider->colliderTag.compare("player") == 0 && otherCollider->colliderTag.compare("projectile") == 0)
+						{
+							return PLAYER_PROJECTILE_COLLISION;
+						}
+						if (entityCollider->colliderTag.compare("enemy") == 0 && otherCollider->colliderTag.compare("playerProjectile") == 0)
+						{
+							return ENEMY_PROJECTILE_COLLISION;
+						}
+						if (entityCollider->colliderTag.compare("player") == 0 && otherCollider->colliderTag.compare("levelGoal") == 0)
+						{
+							return PLAYER_GOAL_COLLISION;
+						}
+					}
+				}
+			}
+
+		}
+	}
+	return NO_COLLISION;
+}

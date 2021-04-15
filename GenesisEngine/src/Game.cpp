@@ -121,7 +121,8 @@ void Game::Update()
 
 	ProcessCameraMovement();
 
-	ProcessCollisions();
+	//ProcessCollisions();
+	CheckAllCollisions();
 }
 
 void Game::Render()
@@ -164,6 +165,44 @@ void Game::ProcessCollisions()
 		std::cout << collisionTagType <<"-----------------------------------------------";
 		//isRunning = false;//stops application.
 	}
+}
+
+void Game::CheckAllCollisions()
+{
+	CollisionType collisionType = manager.CheckCollisions();
+	
+	if (collisionType == PLAYER_ENEMY_COLLISION)
+	{
+		std::cout << collisionType << std::endl;
+		ProcessGameOver();
+	}
+	if (collisionType == PLAYER_GOAL_COLLISION)
+	{
+		std::cout << collisionType << std::endl;
+		LoadNextLevel();
+	}
+	if (collisionType == PLAYER_PROJECTILE_COLLISION)
+	{
+		//todo implement
+		std::cout << collisionType;
+	}
+	if (collisionType == ENEMY_PROJECTILE_COLLISION)
+	{
+		//todo implement
+		std::cout << collisionType;
+	}
+}
+
+void Game::ProcessGameOver()
+{
+	std::cout << "Game over" << std::endl;
+	isRunning = false;
+}
+
+void Game::LoadNextLevel()
+{
+	std::cout << "Loading Next level" << std::endl;
+	isRunning = false;
 }
 
 void Game::Destroy()
