@@ -255,5 +255,11 @@ void Game::LoadLevel(int levelNumber)
 	entity4.AddComponent<TranslationComponent>();
 	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
 
+	Entity& entity5 = manager.AddEntity("heliport", OBSTACLE_LAYER);
+	std::string textureFilePath5 = "./assets/images/base-landing.png";
+	assetManager->AddTexture("heliport-Image", textureFilePath5.c_str());
+	entity5.AddComponent<TransformComponent>(470, 420, 32, 32, 1);
+	entity5.AddComponent<SpriteComponent>("heliport-Image");
+	entity5.AddComponent<ColliderComponent>("levelGoal", 470, 420, 32, 32);
 
 }
