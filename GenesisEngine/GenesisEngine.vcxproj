@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\TextLabelComponent.h" />
+    <ClInclude Include="src\FontManager.h" />
     <ClInclude Include="libs\lua\lauxlib.h" />
     <ClInclude Include="libs\lua\lua.h" />
     <ClInclude Include="libs\lua\lua.hpp" />
@@ -573,6 +575,7 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FontManager.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Animation.cpp" />

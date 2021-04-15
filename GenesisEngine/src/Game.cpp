@@ -8,6 +8,7 @@
 #include "Components/TranslationComponent.h"
 #include "Components/KeyboardInputComponent.h"
 #include "Components/ColliderComponent.h"
+#include "Components/TextLabelComponent.h"
 #include "Map.h"
 
 
@@ -42,6 +43,12 @@ void Game::Initialize(int width, int height)
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		std::cerr << "Error initializing SDL";
+		return;
+	}
+
+	if (TTF_Init() != 0)
+	{
+		std::cerr << "Error initializing SDL TTF";
 		return;
 	}
 
@@ -261,5 +268,10 @@ void Game::LoadLevel(int levelNumber)
 	entity5.AddComponent<TransformComponent>(470, 420, 32, 32, 1);
 	entity5.AddComponent<SpriteComponent>("heliport-Image");
 	entity5.AddComponent<ColliderComponent>("levelGoal", 470, 420, 32, 32);
+
+	Entity& entity6 = manager.AddEntity("LabelLevelName", UI_LAYER);
+	std::string fontFilePath = "./assets/fonts/charriot.ttf";
+	assetManager->AddFont("charriot-font", fontFilePath.c_str(), 14);
+	entity6.AddComponent<TextLabelComponent>(10, 10, "First Level...", "charriot-font", WHITE_COLOR);
 
 }
