@@ -271,7 +271,7 @@ void Game::LoadLevel(int levelNumber)
 
 	Entity& entity6 = manager.AddEntity("LabelLevelName", UI_LAYER);
 	std::string fontFilePath = "./assets/fonts/charriot.ttf";
-	assetManager->AddFont("charriot-font", fontFilePath.c_str(), 14);
+	assetManager->AddFont("charriot-font", fontFilePath.c_str(), 24);
 	entity6.AddComponent<TextLabelComponent>(10, 10, "First Level...", "charriot-font", WHITE_COLOR);
 
 }
