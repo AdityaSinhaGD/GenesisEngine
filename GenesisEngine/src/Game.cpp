@@ -258,7 +258,7 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity4 = manager.AddEntity("lightning", UI_LAYER);
 	std::string textureFilePath4 = "./assets/images/Lightning.jpg";
 	assetManager->AddTexture("lightning-SpriteSheet", textureFilePath4.c_str());
-	entity4.AddComponent<TransformComponent>(0, 0, 128, 160, 1);
+	entity4.AddComponent<TransformComponent>(0, 500, 128, 160, 1);
 	entity4.AddComponent<TranslationComponent>();
 	entity4.AddComponent<SpriteComponent>("lightning-SpriteSheet", 4, 90, false, false);
 
