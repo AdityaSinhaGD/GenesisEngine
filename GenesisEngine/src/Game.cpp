@@ -9,6 +9,7 @@
 #include "Components/KeyboardInputComponent.h"
 #include "Components/ColliderComponent.h"
 #include "Components/TextLabelComponent.h"
+#include "Components/ProjectileEmitterComponent.h"
 #include "Map.h"
 
 
@@ -232,10 +233,10 @@ void Game::LoadLevel(int levelNumber)
 	Entity& entity1 = manager.AddEntity("truck", ENEMY_LAYER);
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
-	entity1.AddComponent<TransformComponent>(0, 300, 32, 32, 3);
+	entity1.AddComponent<TransformComponent>(150, 490, 32, 32, 2);
 	entity1.AddComponent<TranslationComponent>(10, 0);
 	entity1.AddComponent<SpriteComponent>("truck-Image");
-	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 35, 35);
+	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 32, 32);
 	//std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
 
@@ -274,4 +275,13 @@ void Game::LoadLevel(int levelNumber)
 	assetManager->AddFont("charriot-font", fontFilePath.c_str(), 24);
 	entity6.AddComponent<TextLabelComponent>(10, 10, "First Level...", "charriot-font", WHITE_COLOR);
 
+	Entity& entity7 = manager.AddEntity("projectile", PROJECTILE_LAYER);
+	std::string textureFilePathProjectile = "./assets/images/bullet.png";
+	assetManager->AddTexture("bullet-sprite", textureFilePathProjectile.c_str());
+	entity7.AddComponent<TransformComponent>(150 + 16, 490 + 16, 4, 4, 1);
+	entity7.AddComponent<TranslationComponent>();
+	entity7.AddComponent<SpriteComponent>("bullet-sprite");
+	entity7.AddComponent<ColliderComponent>("projectile", 150 + 16, 490 + 16, 4, 4);
+	entity7.AddComponent<ProjectileEmitterComponent>(50, 270, 200, true);
+	
 }

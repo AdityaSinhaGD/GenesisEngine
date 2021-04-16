@@ -8,6 +8,7 @@ void EntityManager::Update(float deltaTime)
 	{
 		entity->Update(deltaTime);
 	}
+	DestroyInactiveEntities();
 }
 
 void EntityManager::Render()
@@ -153,4 +154,15 @@ CollisionType EntityManager::CheckCollisions() const
 		}
 	}
 	return NO_COLLISION;
+}
+
+void EntityManager::DestroyInactiveEntities()
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (!entities[i]->IsActive())
+		{
+			entities.erase(entities.begin() + i);
+		}
+	}
 }

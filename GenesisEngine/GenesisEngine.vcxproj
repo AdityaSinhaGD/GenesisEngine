@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\ProjectileEmitterComponent.h" />
     <ClInclude Include="src\Components\TextLabelComponent.h" />
     <ClInclude Include="src\FontManager.h" />
     <ClInclude Include="libs\lua\lauxlib.h" />
