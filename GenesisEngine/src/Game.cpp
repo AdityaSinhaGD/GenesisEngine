@@ -234,7 +234,7 @@ void Game::LoadLevel(int levelNumber)
 	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
 	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
 	entity1.AddComponent<TransformComponent>(150, 490, 32, 32, 2);
-	entity1.AddComponent<TranslationComponent>(10, 0);
+	entity1.AddComponent<TranslationComponent>();
 	entity1.AddComponent<SpriteComponent>("truck-Image");
 	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 32, 32);
 	//std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
