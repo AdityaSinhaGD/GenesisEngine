@@ -9,6 +9,7 @@
 #include "Component.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "../libs/sol/sol.hpp"
 
 class AssetManager;
 
@@ -38,6 +39,7 @@ public:
 	void CheckAllCollisions();
 	void LoadNextLevel();
 	void ProcessGameOver();
+	void LoadLevelUsingLua(int levelNumber);
 };
 #endif // !GAME.H
 

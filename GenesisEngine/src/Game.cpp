@@ -67,7 +67,8 @@ void Game::Initialize(int width, int height)
 		return;
 	}
 
-	LoadLevel(0);
+	//LoadLevel(0);//For loading via our old sandbox.
+	LoadLevelUsingLua(1);//For loading via Lua script.
 	//debug to console block
 	manager.ListAllEntitiesAndTheirComponents();
 	//debug block ends
@@ -283,5 +284,60 @@ void Game::LoadLevel(int levelNumber)
 	entity7.AddComponent<SpriteComponent>("bullet-sprite");
 	entity7.AddComponent<ColliderComponent>("projectile", 150 + 16, 490 + 16, 4, 4);
 	entity7.AddComponent<ProjectileEmitterComponent>(50, 270, 200, true);
+	
+}
+
+void Game::LoadLevelUsingLua(int levelNumber)
+{
+	sol::state lua;
+	lua.open_libraries(sol::lib::base);
+	std::string levelName = "Level" + std::to_string(levelNumber);
+	lua.script_file("./assets/scripts/" + levelName + ".lua");
+	sol::table levelData = lua[levelName];
+
+	sol::table levelAssets = levelData["assets"];
+
+	unsigned int assetIndex = 0;
+	while (true)
+	{
+		sol::optional<sol::table> existsAssetIndexNode = levelAssets[assetIndex];
+		if (existsAssetIndexNode == sol::nullopt)
+		{
+			break;
+		}
+		else
+		{
+			sol::table asset = levelAssets[assetIndex];
+			std::string assetType = asset["type"];
+			if (assetType.compare("texture") == 0)
+			{
+				std::string assetId = asset["id"];
+				std::string assetFile = asset["file"];
+				assetManager->AddTexture(assetId, assetFile.c_str());
+			}
+		}
+		assetIndex++;
+	}
+
+	sol::table levelMap = levelData["map"];
+	std::string mapTextureId = levelMap["textureAssetId"];
+	std::string mapFilePath = levelMap["file"];
+
+	map = new Map(mapTextureId,
+		static_cast<int>(levelMap["scale"]),
+		static_cast<int>(levelMap["tileSize"]));
+
+	map->LoadMap(mapFilePath,
+		static_cast<int>(levelMap["mapSizeX"]),
+		static_cast<int>(levelMap["mapSizeY"]));
+
+	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
+	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
+	playerEntity.AddComponent<TransformComponent>(200, 100, 32, 32, 2);
+	playerEntity.AddComponent<TranslationComponent>();
+	playerEntity.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
+	playerEntity.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
+	playerEntity.AddComponent<ColliderComponent>("player", 200, 100, 32, 32);
+
 	
 }
