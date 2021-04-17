@@ -230,12 +230,12 @@ void Game::LoadLevel(int levelNumber)
 	map->LoadMap("./assets/tilemaps/jungle.map", 25, 20);//Hard coding the values of the tilemap elements for now.
 
 	//Width and height of transform component should match texture dimensions to produce artifactless animations
-	Entity& entity1 = manager.AddEntity("truck", ENEMY_LAYER);
-	std::string textureFilePath1 = "./assets/images/truck-ford-right.png";
-	assetManager->AddTexture("truck-Image", textureFilePath1.c_str());
-	entity1.AddComponent<TransformComponent>(150, 490, 32, 32, 2);
+	Entity& entity1 = manager.AddEntity("tank", ENEMY_LAYER);
+	std::string textureFilePath1 = "./assets/images/tank-tiger-right.png";
+	assetManager->AddTexture("tank-Image", textureFilePath1.c_str());
+	entity1.AddComponent<TransformComponent>(150, 490, 32, 32, 1);
 	entity1.AddComponent<TranslationComponent>();
-	entity1.AddComponent<SpriteComponent>("truck-Image");
+	entity1.AddComponent<SpriteComponent>("tank-Image");
 	entity1.AddComponent<ColliderComponent>("enemy", 0, 0, 32, 32);
 	//std::cout << entity1.HasComponent<SpriteComponent>() <<"\n";
 
