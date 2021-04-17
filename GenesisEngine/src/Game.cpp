@@ -331,11 +331,9 @@ void Game::LoadLevelUsingLua(int levelNumber)
 		static_cast<int>(levelMap["mapSizeX"]),
 		static_cast<int>(levelMap["mapSizeY"]));
 
-	std::string textureFilePath2 = "./assets/images/chopper-spritesheet.png";
-	assetManager->AddTexture("chopper-SpriteSheet", textureFilePath2.c_str());
 	playerEntity.AddComponent<TransformComponent>(200, 100, 32, 32, 2);
 	playerEntity.AddComponent<TranslationComponent>();
-	playerEntity.AddComponent<SpriteComponent>("chopper-SpriteSheet", 2, 60, true, false);
+	playerEntity.AddComponent<SpriteComponent>("chopper-texture", 2, 60, true, false);
 	playerEntity.AddComponent<KeyboardInputComponent>("w", "d", "s", "a", "space");
 	playerEntity.AddComponent<ColliderComponent>("player", 200, 100, 32, 32);
 

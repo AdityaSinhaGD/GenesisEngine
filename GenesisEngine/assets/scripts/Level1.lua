@@ -30,6 +30,12 @@ Level1 = {
                     scale = 1,
                     rotation = 0
                 },
+                translation = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    }
+                },
                 sprite = {
                     textureAssetId = "chopper-texture",
                     animated = true,
@@ -38,7 +44,7 @@ Level1 = {
                     fixed = false
                 },
                 collider = {
-                    tag = "PLAYER"
+                    tag = "player"
                 },
                 input = {
                     keyboard = {
