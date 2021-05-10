@@ -2,9 +2,7 @@ math.randomseed(os.time())
 local currentSystemHour = os.date("*t").hour
 local mapTextureAssetId = "terrain-texture-day"
 
-----------------------------------------------------
--- Use a night-map or a day-map texture (9am-9pm)
-----------------------------------------------------
+
 if currentSystemHour < 15 then
     mapTextureAssetId = "terrain-texture-day"
 else
