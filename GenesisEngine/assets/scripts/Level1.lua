@@ -1,3 +1,16 @@
+math.randomseed(os.time())
+local currentSystemHour = os.date("*t").hour
+local mapTextureAssetId = "terrain-texture-day"
+
+----------------------------------------------------
+-- Use a night-map or a day-map texture (9am-9pm)
+----------------------------------------------------
+if currentSystemHour < 15 then
+    mapTextureAssetId = "terrain-texture-day"
+else
+    mapTextureAssetId = "terrain-texture-night"
+end
+
 Level1 = {
     assets = {
         [0] = { type="texture", id = "terrain-texture-day", file = "./assets/tilemaps/jungle.png" },
@@ -8,7 +21,7 @@ Level1 = {
         [5] = { type="font", id = "charriot-font", file = "./assets/fonts/charriot.ttf", fontSize = 14 }
     },
     map = {
-        textureAssetId = "terrain-texture-night",
+        textureAssetId = mapTextureAssetId,
         file = "./assets/tilemaps/jungle.map",
         scale = 2,
         tileSize = 32,

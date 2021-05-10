@@ -290,7 +290,7 @@ void Game::LoadLevel(int levelNumber)
 void Game::LoadLevelUsingLua(int levelNumber)
 {
 	sol::state lua;
-	lua.open_libraries(sol::lib::base);
+	lua.open_libraries(sol::lib::base, sol::lib::os, sol::lib::math);
 	std::string levelName = "Level" + std::to_string(levelNumber);
 	lua.script_file("./assets/scripts/" + levelName + ".lua");
 	sol::table levelData = lua[levelName];
