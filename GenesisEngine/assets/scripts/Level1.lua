@@ -3,7 +3,7 @@ local currentSystemHour = os.date("*t").hour
 local mapTextureAssetId = "terrain-texture-day"
 
 
-if currentSystemHour < 15 then
+if currentSystemHour < 11 then
     mapTextureAssetId = "terrain-texture-day"
 else
     mapTextureAssetId = "terrain-texture-night"
