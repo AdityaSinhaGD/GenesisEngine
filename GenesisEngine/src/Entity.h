@@ -9,7 +9,7 @@
 #include "EntityManager.h"
 
 class EntityManager;
-class Component;
+//class Component;
 
 class Entity
 {
