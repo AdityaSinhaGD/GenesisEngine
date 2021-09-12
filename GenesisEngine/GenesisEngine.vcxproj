@@ -73,12 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)SDL2/include;$(SolutionDir)GenesisEngine/libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/SDL2/lib/x86;$(SolutionDir)/GenesisEngine/libs/lua;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)SDL2/lib/x86;$(SolutionDir)GenesisEngine/libs/lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)SDL2/include;$(SolutionDir)GenesisEngine/libs;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/SDL2/lib/x86;$(SolutionDir)/GenesisEngine/libs/lua;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)SDL2/lib/x86;$(SolutionDir)GenesisEngine/libs/lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
